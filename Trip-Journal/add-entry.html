@@ -6,51 +6,66 @@
     <title>Trip Journal</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <h1>TRIP JOURNAL</h1>
     <div class="tripform">
         <h2>Add a New Entry:</h2>
         <form id="trip-form">
-            <label for="destination">Your Destination:</label>
+            <label for="destination">Location:</label>
             <input type="text" id="destination" name="destination" required>
+
+            <label for="places">Places you visited: </label>
+            <textarea id="places" name="places" rows="3"></textarea>
 
             <div class="dates">
             <label for="startdate">Start Date:</label>
             <input type="date" id="startdate" name="startdate" required>
-            <label for="enddate" style="margin-left:4em">End Date:</label>
+            <label for="enddate" style="margin-left:4.5em">End Date:</label>
             <input type="date" id="enddate" name="enddate" required>
             </div>
 
-            <label for="notes">Notes: </label>
+            <label for="notes">Thoughts on the trip: </label>
             <textarea id="notes" name="notes" rows="5"></textarea>
-            <label for="photos">Choose your photos: </label>
-            <input type="file" id="photos" name="photos" accept="image/*" multiple>
+
+            <label for="weather">Weather: </label>
+            <select id="weather" style="margin-bottom: 2em;">
+                <option value="" selected disabled>Select a weather condition</option>
+                <option value="Sunny">Sunny</option>
+                <option value="Cloudy">Cloudy</option>
+                <option value="Rainy">Rainy</option>
+                <option value="Snowy">Snowy</option>
+            </select>
+
+            <label for="tips">Tips you would give to anyone travelling to this place: </label>
+            <textarea id="tips" name="tips" rows="2" style="margin-bottom: 2em;"></textarea>
 
             <button type="submit">Add Entry</button>
         </form>
     </div>
+    <div></div>
     <script>
+
         const entryForm = document.getElementById("trip-form");
 
         entryForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            // Get form values (customize these as needed)
             const destination = document.getElementById("destination").value;
+            const places = document.getElementById("places").value;
             const startdate = document.getElementById("startdate").value;
             const enddate = document.getElementById("enddate").value;
             const notes = document.getElementById("notes").value;
+            const weather = document.getElementById("weather").value;
+            const tips = document.getElementById("tips").value;
 
-            const photosInput = document.getElementById("photos");
-            const photos=Array.from(photosInput.files);
-
-            // Create an entry object with the form data
             const entry = {
                 destination,
+                places,
                 startdate,
                 enddate,
                 notes,
-                photos,
+                weather,
+                tips,
             };
 
             // Check if localStorage already contains entries
@@ -62,9 +77,10 @@
             // Save the updated entries back to localStorage
             localStorage.setItem("tripEntries", JSON.stringify(existingEntries));
 
-            // Redirect to the "Previous Entries" page
+            // Redirect to the "Previous-Entries" page
             window.location.href = "previous-entries.html";
         });
+        
     </script>
 </body>
 </html>

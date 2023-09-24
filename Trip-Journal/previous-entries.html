@@ -11,35 +11,28 @@
     </ul>
 </div>
 <script>
-    // Retrieve entries from localStorage
+
     const storedEntries = JSON.parse(localStorage.getItem("tripEntries")) || [];
-
-    // Get the element where we'll display the entries
     const entryList = document.getElementById("entries-list");
-
     console.log(storedEntries);
+
     // Display the entries on the page
     storedEntries.forEach((entry, index) => {
         const listItem = document.createElement("li");
         listItem.innerHTML = `
-            <p><strong>Entry ${index + 1}:</strong></p>
-            <p>Destination: ${entry.destination}</p>
+            <p><strong>ENTRY ${index + 1}:</strong></p>
+            <p>Location: ${entry.destination}</p>
+            <p>Places you visited: ${entry.places}</p>
             <p>Dates: ${entry.startdate} to ${entry.enddate}</p>
-            <p>Notes: ${entry.notes}</p>
-            <p>Photos:</p>
-        `;
-
-        /*entry.photos.forEach((photo, photoIndex) => {
-            const img = document.createElement("img");
-            img.src = URL.createObjectURL(photo);
-            console.log(photo);
-            img.alt = `Photo ${photoIndex + 1}`;
-            img.style.maxWidth = "25%";
-            listItem.appendChild(img);
-        });
-        */
-        entryList.appendChild(listItem);
+            <p>Thoughts: ${entry.notes}</p>
+            <p>Weather: ${entry.weather}</p>
+            <p>Tips for Others: ${entry.tips}</p>
+        `;    
+    entryList.appendChild(listItem);
     });
+    
 </script>
+<a href="javascript:history.back();" class="goBack">Go Back</a>
+<a href="index.html" class="goBack">Go to Front Page</a>
 </body>
 </html>
