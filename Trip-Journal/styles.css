@@ -1,5 +1,22 @@
 .bodystyle{
-    background-color:#F0F0F0;
+    height:80vh;
+}
+
+.goBack{
+    color:#F0F0F0;
+    padding: 0.6em;
+}
+
+select {
+    padding: 5px;
+    font-size: 16px;
+}
+
+/* Style the option elements */
+option {
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding-left: 30px;
 }
 
 body {
@@ -12,8 +29,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    padding: 0.7rem;
+    height: 120vh;
+    padding: 1rem;
 }
 
 .dates{
@@ -26,32 +43,30 @@ header, h2 {
     color: #eeeeee; /* Header text color */
     text-align: center;
     padding: 1rem;
-  }
+}
+
 h1{
     color:#f1efef;
     text-align: center;
-    padding: 1rem;
+    margin-bottom: 10px;
 }
 
-main {
-    margin: 2rem;
-  }
-  /* Links styles */
-  a {
-    color: #00adb5; /* Link color */
+a{
+    color: #00adb5; 
     text-decoration: none;
-  }
-  a:hover {
+}
+
+a:hover {
     text-decoration: underline;
-  }
+}
 
 .tripform {
     width: 65%;
-    padding:2rem;
+    padding:2.5rem;
     background-color: #f1efef;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
 }
 
 form {
@@ -74,14 +89,6 @@ textarea {
     background-color: #F0F0F0;
     border: 1px solid #00ADB5;
     color: #191717;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-input[type="file"] {
-    background-color:#0e474a;
-    border: none;
-    color: #EEEEEE;
     padding: 10px;
     border-radius: 5px;
 }
@@ -116,7 +123,6 @@ button:hover {
 .parent-element ul {
     list-style: none;
     padding: 0;
-    align-items: center;
 }
 
 li {
@@ -126,21 +132,3 @@ li {
 img {
     max-width: 15%;
 }
-
-/* Center the image horizontally within the li */
-li img {
-    display: block;
-    margin: 0 auto;
-}
-
-.photos-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.photos-container img {
-    max-width: 15%;
-    margin: 5px;
-}
-
