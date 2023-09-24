@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #00ADB5;
+            font-family: 'Dela Gothic One', cursive;
         }
 
         .container {
@@ -23,6 +26,9 @@
 
         h1 {
             text-align: center;
+            color: #091111f7;
+            font-size: 3rem;
+            font-family: 'Dela Gothic One', cursive;
         }
 
         .budget-form label,
@@ -46,7 +52,7 @@
 
         .budget-form button,
         .expense-form button {
-            background-color: #333;
+            background-color: rgba(11, 14, 16, 0.984);
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -90,13 +96,16 @@
             <label for="budget">Enter Your Budget ($):</label>
             <input type="number" id="budget" placeholder="Enter your budget">
             <button onclick="setBudget()">Set Budget</button>
+            <br><br/>
         </div>
         <div class="expense-form">
             <label for="description">Description:</label>
             <input type="text" id="description" placeholder="Enter expense description">
+            <br><br/>
 
             <label for="amount">Amount ($):</label>
             <input type="number" id="amount" placeholder="Enter expense amount">
+            <br><br/>
 
             <label for="category">Category:</label>
             <select id="category">
@@ -150,7 +159,7 @@
                 maintainAspectRatio: false, // Added to control the chart size
             },
         });
-
+    
         function setBudget() {
             const budgetInput = document.getElementById("budget").value;
             if (!isNaN(budgetInput) && parseFloat(budgetInput) > 0) {
@@ -161,41 +170,42 @@
                 alert("Please enter a valid budget amount.");
             }
         }
-
+    
         function addExpense() {
             const description = document.getElementById("description").value;
             const amount = parseFloat(document.getElementById("amount").value);
-
+    
             if (description && !isNaN(amount) && amount > 0) {
                 const category = document.getElementById("category").value;
                 expenses.push({ description, amount, category });
                 remainingBudget -= amount;
-
+    
                 updateExpenseList();
                 updateBudgetInfo();
                 updatePieChart();
+                updateTotalExpense(); // New function to update total expenses
             } else {
                 alert("Please fill in all fields correctly.");
             }
         }
-
+    
         function updateExpenseList() {
             const expensesList = document.getElementById("expenses");
             expensesList.innerHTML = "";
             expenses.forEach((expense) => {
                 const listItem = document.createElement("li");
                 listItem.innerHTML = `
-            ${expense.description} - $${expense.amount.toFixed(2)} - Category: ${expense.category}
-        `;
+                    ${expense.description} - $${expense.amount.toFixed(2)} - Category: ${expense.category}
+                `;
                 expensesList.appendChild(listItem);
             });
         }
-
+    
         function updateBudgetInfo() {
             document.getElementById("budgetAmount").textContent = budget.toFixed(2);
             document.getElementById("remainingBudget").textContent = remainingBudget.toFixed(2);
         }
-
+    
         function updatePieChart() {
             const categories = [...new Set(expenses.map((expense) => expense.category))];
             const categoryExpenses = categories.map((category) => {
@@ -207,13 +217,19 @@
                 }, 0);
                 return categoryTotal;
             });
-
+    
             expenseChart.data.labels = categories;
             expenseChart.data.datasets[0].data = categoryExpenses;
             expenseChart.update();
         }
-
+    
+        // New function to update the total expenses
+        function updateTotalExpense() {
+            const totalExpense = expenses.reduce((total, expense) => total + expense.amount, 0);
+            document.getElementById("totalExpense").textContent = totalExpense.toFixed(2);
+        }
     </script>
+    
 </body>
 
 </html>
