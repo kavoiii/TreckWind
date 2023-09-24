@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+<div class="trip-entries">
+    <h2>Your Trip Entries:</h2>
+    <ul id="entries-list">
+        <!-- Entries will be displayed here dynamically -->
+    </ul>
+</div>
+<script>
+    // Retrieve entries from localStorage
+    const storedEntries = JSON.parse(localStorage.getItem("tripEntries")) || [];
+
+    // Get the element where we'll display the entries
+    const entryList = document.getElementById("entries-list");
+
+    console.log(storedEntries);
+    // Display the entries on the page
+    storedEntries.forEach((entry, index) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `
+            <p><strong>Entry ${index + 1}:</strong></p>
+            <p>Destination: ${entry.destination}</p>
+            <p>Dates: ${entry.startdate} to ${entry.enddate}</p>
+            <p>Notes: ${entry.notes}</p>
+            <p>Photos:</p>
+        `;
+
+        /*entry.photos.forEach((photo, photoIndex) => {
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(photo);
+            console.log(photo);
+            img.alt = `Photo ${photoIndex + 1}`;
+            img.style.maxWidth = "25%";
+            listItem.appendChild(img);
+        });
+        */
+        entryList.appendChild(listItem);
+    });
+</script>
+</body>
+</html>
